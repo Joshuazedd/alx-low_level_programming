@@ -45,4 +45,4 @@ What you should learn from this project:
 ---
 
 ## Author
-* **Marvelous Ohaeri** - [Marve09](https://github.com/Marve09)
+* **Joshua Chidubem Ohaeri** - [Joshuazedd](https://github.com/Joshuazedd)
