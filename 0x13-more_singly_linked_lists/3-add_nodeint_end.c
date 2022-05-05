@@ -1,41 +1,33 @@
 #include "lists.h"
-/**
- * c_node - creates a new node
- * @n: int
- * Return: address memory node
- */
-listint_t *c_node(const int n)
-{
-	listint_t *n_node;
+#include <stdlib.h>
 
-	n_node = malloc(sizeof(listint_t));
-	if (n_node == NULL)
-		return (NULL);
-	n_node->n =  n;
-	n_node->next = NULL;
-	return (n_node);
-}
 /**
-  * add_nodeint_end - adds a new node at the end of a listint_t list.
-  * @head: Double pointer.
-  * @n: int.
-  * Return: address memory node
-  */
+ * add_nodeint_end - Add a new node at the end of a list.
+ * @head: Address of the first node of a list.
+ * @n: Integer to insert in the new node.
+ * Return: Address of the new node.
+ **/
+
 listint_t *add_nodeint_end(listint_t **head, const int n)
 {
-	listint_t *node_end;
-	listint_t *tmp = *head;
+	listint_t *temp, *temp2;
 
-	if (head == NULL)
+	temp = malloc(sizeof(listint_t));
+	if (temp == NULL)
 		return (NULL);
-	node_end = c_node(n);
+
+	temp->n = n;
+	temp->next = NULL;
+
 	if (*head == NULL)
 	{
-		*head = node_end;
-		return (*head);
+		*head = temp;
+		return (temp);
 	}
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = node_end;
-	return (*head);
+
+	temp2 = *head;
+	while (temp2->next)
+		temp2 = temp2->next;
+	temp2->next = temp;
+	return (temp);
 }

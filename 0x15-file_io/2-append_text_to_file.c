@@ -1,40 +1,33 @@
 #include "holberton.h"
-int str_len(char *);
+
 /**
- * append_text_to_file - function that creates a file.
- * @filename: Path file
- * @text_content: content of the file
+ * append_text_to_file - appends text at the end of a file
+ * @filename: file to append the text to
+ * @text_content: content to append into the file
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: 1 on success and -1 on failure
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
-	int fd, f_write;
+	int fd, a, b = 0;
 
-	if (filename == NULL)
+	if (!filename)
 		return (-1);
-	if (text_content == NULL)
-		text_content = "";
-	fd = open(filename, O_WRONLY | O_APPEND | O_EXCL);
+
+	fd = open(filename, O_WRONLY | O_APPEND);
 	if (fd < 0)
 		return (-1);
-	f_write = write(fd, text_content, str_len(text_content));
-	if (f_write == -1)
-		return (-1);
-	close(fd);
-	return (1);
-}
-/**
-  * str_len - size de un string
-  * @s: string
-  * Return:len
-  */
-int str_len(char *s)
-{
-	int len = 0;
 
-	while (s[len++])
-		continue;
-	return (len - 1);
+	if (text_content)
+	{
+		while (text_content[b])
+			b++;
+		a = write(fd, text_content, b);
+		if (a != b)
+			return (-1);
+	}
+
+	close(fd);
+
+	return (1);
 }
